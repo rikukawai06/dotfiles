@@ -59,7 +59,7 @@ fi
 # Install brew packages
 if [[ "$CI" != "true" ]]; then
   echo "Homebrewパッケージをインストールします..."
-  brew bundle --file="${DOTFILES_DIR}/setup/Brewfile"
+  brew bundle --file="${HOME}/setup/Brewfile"
 else
   echo "CI環境のため、brew bundle はスキップします（テスト爆速化）"
 fi
