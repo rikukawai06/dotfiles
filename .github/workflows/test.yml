@@ -24,6 +24,13 @@ jobs:
           chmod +x ./setup/install.zsh
           ./setup/install.zsh
 
+      # パスの確認
+      - name: Check Paths
+        run: |
+            pwd
+            ls -R ${GITHUB_WORKSPACE}  # リポジトリ内の全ファイル構造を表示
+            echo "Home is: ${HOME}"
+
       # 正常にインストールされたか確認するステップ（例）
       - name: Verify installation
         run: |
