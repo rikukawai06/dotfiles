@@ -6,10 +6,10 @@ brew "fzf"
 brew "ghq"
 brew "hub"
 brew "jq"
-brew "mas"
 brew "neovim"
 
 if OS.mac?
+  brew "mas"
   cask "docker"
   cask "google-chrome"
   cask "iterm2"
