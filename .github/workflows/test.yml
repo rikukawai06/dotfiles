@@ -1,0 +1,33 @@
+name: Dotfiles Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # 手動実行ボタンを有効にする
+
+jobs:
+  test-macos:
+    # 最新のmacOS環境を使用 (現在は macOS 14/15 など)
+    runs-on: macos-latest
+
+    steps:
+      # リポジトリのコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # インストールスクリプトの実行
+      # ここを実際のファイル名（setup.sh や install.sh など）に書き換えてください
+      - name: Run install script
+        run: |
+          chmod +x ./install.sh
+          ./install.sh
+
+      # 正常にインストールされたか確認するステップ（例）
+      - name: Verify installation
+        run: |
+          # 例えば brew で入れたコマンドが使えるか確認
+          # command -v gh
+          # シンボリックリンクが貼られているか確認
+          ls -la ~/.zshrc
