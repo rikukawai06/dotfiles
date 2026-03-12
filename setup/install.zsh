@@ -47,4 +47,4 @@ fi
 source ${HOME}/.zshrc
 
 # Install brew packages
-# cd ${HOME} && brew bundle --file=${HOME}/.dotfiles/setup/Brewfile
+cd ${HOME} && brew bundle --file=${HOME}/.dotfiles/setup/Brewfile
