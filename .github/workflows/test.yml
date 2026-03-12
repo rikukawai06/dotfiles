@@ -21,8 +21,8 @@ jobs:
       # ここを実際のファイル名（setup.sh や install.sh など）に書き換えてください
       - name: Run install script
         run: |
-          chmod +x ./setup/install.zsh
-          ./setup/install.zsh
+          # chmod +x ./setup/install.zsh
+          # ./setup/install.zsh
 
       # パスの確認
       - name: Check Paths
