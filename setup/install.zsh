@@ -49,11 +49,11 @@ source ${HOME}/.zshrc
 # windowsに必要なツールをインストール
 if [[ "$(uname -r)" == *microsoft* ]] || [[ "$(uname -r)" == *WSL* ]]; then
   echo "WSL環境を検知しました。Windows側にGUIアプリをインストールします..."
-
-  # 「vscode」「chrome」「fork」のインストール
   winget.exe install --id Microsoft.VisualStudioCode -e --accept-package-agreements --accept-source-agreements
   winget.exe install --id Google.Chrome -e
   winget.exe install --id DanPristupov.Fork -e
+  winget.exe install --id Docker.DockerDesktop -e --accept-package-agreements --accept-source-agreements
+  winget.exe install --id dbeaver.dbeaver -e --accept-package-agreements --accept-source-agreements
 fi
 
 # Install brew packages
