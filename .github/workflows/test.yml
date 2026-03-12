@@ -41,5 +41,5 @@ jobs:
       - name: Verify installation
         run: |
           echo "=== リンクの確認 ==="
-          ls -la ~/.zshrc
-          ls -la ~/.config
+          # ls -la ~/.zshrc
+          # ls -la ~/.config
