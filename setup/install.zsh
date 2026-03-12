@@ -47,4 +47,9 @@ fi
 source ${HOME}/.zshrc
 
 # Install brew packages
-cd ${HOME} && brew bundle --file=${HOME}/.dotfiles/setup/Brewfile
+if [[ "$CI" != "true" ]]; then
+  echo "Homebrewパッケージをインストールします..."
+  brew bundle --file="${DOTFILES_DIR}/setup/Brewfile"
+else
+  echo "CI環境のため、brew bundle はスキップします（テスト爆速化）"
+fi
