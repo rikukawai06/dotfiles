@@ -39,10 +39,9 @@ if [[ "$(uname -r)" == *microsoft* ]] || [[ "$(uname -r)" == *WSL* ]]; then
 	echo "Windows側のアプリを削除しています..."
 	# installの逆（uninstall）を実行
 	winget.exe uninstall --id Microsoft.VisualStudioCode
-	winget.exe uninstall --id Google.Chrome
-	winget.exe uninstall --id DanPristupov.Fork
+	winget.exe uninstall --id Fork.Fork
 	winget.exe uninstall --id Docker.DockerDesktop
-	winget.exe uninstall --id dbeaver.dbeaver
+	winget.exe uninstall --id DBeaver.DBeaver.Community
 	echo "✔ Windowsツールのアンインストール完了"
 fi
 
