@@ -9,35 +9,37 @@ on:
 
 jobs:
   test-macos:
-    # 最新のmacOS環境を使用 (現在は macOS 14/15 など)
+    # 最新のmacOS環境を使用 (macOS 14/15 など)
     runs-on: macos-latest
 
     steps:
-      # リポジトリのコードをチェックアウト
+      # 1. リポジトリのコードをチェックアウト（余計な階層を作らないよう標準設定に戻す）
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          # ここで展開先をスクリプトの想定（~/.dotfiles）に合わせる
-          path: .dotfiles
 
-      # パスの確認
+      # 2. 【超重要】スクリプトが探している「~/.dotfiles」という道（リンク）を作る
+      - name: Setup path for install.zsh
+        run: ln -s $GITHUB_WORKSPACE $HOME/.dotfiles
+
+      # 3. デバッグ用にパスを確認（念のため残しておきます）
       - name: Check Paths
         run: |
+            echo "=== パスの確認 ==="
             pwd
-            ls -R ${GITHUB_WORKSPACE}  # リポジトリ内の全ファイル構造を表示
+            echo "Workspace: ${GITHUB_WORKSPACE}"
             echo "Home is: ${HOME}"
+            echo "リンク先の中身:"
+            ls -la $HOME/.dotfiles/setup/
 
-      # インストールスクリプトの実行
-      # ここを実際のファイル名（setup.sh や install.sh など）に書き換えてください
+      # 4. インストールスクリプトの実行（作成したリンク先の絶対パスを使う）
       - name: Run install script
         run: |
-          chmod +x ./setup/install.zsh
-          ./setup/install.zsh
+          chmod +x $HOME/.dotfiles/setup/install.zsh
+          $HOME/.dotfiles/setup/install.zsh
 
-      # 正常にインストールされたか確認するステップ（例）
+      # 5. 正常にインストールされたか確認するステップ
       - name: Verify installation
         run: |
-          # 例えば brew で入れたコマンドが使えるか確認
-          # command -v gh
-          # シンボリックリンクが貼られているか確認
+          echo "=== リンクの確認 ==="
           ls -la ~/.zshrc
+          ls -la ~/.config
