@@ -47,7 +47,7 @@ if [[ "$OS_ENV" == "windows" ]]; then
 fi
 
 # Install brew packages
-if [[ "$CI" != "true" ]] || [[ "$OS_ENV" == "mac" ]]; then
+if [[ "$OS_ENV" == "mac" ]]; then
   echo "Homebrewパッケージをインストールします..."
   brew bundle --file="${HOME}/.dotfiles/setup/Brewfile"
 else
