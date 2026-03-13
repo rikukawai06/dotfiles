@@ -13,15 +13,15 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # 1. リポジトリのコードをチェックアウト（余計な階層を作らないよう標準設定に戻す）
+      # リポジトリのコードをチェックアウト（余計な階層を作らないよう標準設定に戻す）
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. 【超重要】スクリプトが探している「~/.dotfiles」という道（リンク）を作る
+      # スクリプトが探している「~/.dotfiles」という道（リンク）を作る
       - name: Setup path for install.zsh
         run: ln -s $GITHUB_WORKSPACE $HOME/.dotfiles
 
-      # 3. デバッグ用にパスを確認（念のため残しておきます）
+      # デバッグ用にパスを確認
       - name: Check Paths
         run: |
             echo "=== パスの確認 ==="
@@ -31,13 +31,13 @@ jobs:
             echo "リンク先の中身:"
             ls -la $HOME/.dotfiles/setup/
 
-      # 4. インストールスクリプトの実行（作成したリンク先の絶対パスを使う）
+      # インストールスクリプトの実行
       - name: Run install script
         run: |
           chmod +x $HOME/.dotfiles/setup/install.zsh
           $HOME/.dotfiles/setup/install.zsh
 
-      # 5. 正常にインストールされたか確認するステップ
+      # 正常にインストールされたか確認するステップ
       - name: Verify installation
         run: |
           echo "=== リンクの確認 ==="
