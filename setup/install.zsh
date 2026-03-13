@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-source ~/.dotfiles/config/os_env.zsh
-
 # clone repository
 if [[ ! -e ${HOME}/.dotfiles ]]; then
   git clone https://github.com/rikukawai06/dotfiles.git ${HOME}/.dotfiles
@@ -11,6 +9,7 @@ fi
 
 # link dotfiles
 cd ${HOME}/.dotfiles
+source /config/os_env.zsh
 for name in *; do
   if [[ ${name} != 'setup' ]] && [[ ${name} != 'config' ]] && [[ ${name} != 'README.md' ]]; then
     if [[ -L ${HOME}/.${name} ]]; then
