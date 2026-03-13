@@ -6,10 +6,10 @@ if [[ ! -e ${HOME}/.dotfiles ]]; then
 else
   git -C ${HOME}/.dotfiles pull
 fi
+source ~/.dotfiles/config/os_env.zsh
 
 # link dotfiles
 cd ${HOME}/.dotfiles
-source /config/os_env.zsh
 for name in *; do
   if [[ ${name} != 'setup' ]] && [[ ${name} != 'config' ]] && [[ ${name} != 'README.md' ]]; then
     if [[ -L ${HOME}/.${name} ]]; then
