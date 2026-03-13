@@ -1,24 +1,20 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-
 brew "fzf"
 brew "ghq"
 brew "hub"
 brew "jq"
 brew "neovim"
-
-if OS.mac?
-  brew "mas"
-  cask "docker"
-  cask "google-chrome"
-  cask "iterm2"
-  cask "sequel-ace"
-  cask "sublime-text"
-  cask "visual-studio-code"
-  cask "fork"
-  cask "notion"
-  mas "Numbers", id: 409203825
-  mas "Pages", id: 409201541
-  mas "Xcode", id: 497799835
-end
+brew "mas"
+cask "docker"
+cask "google-chrome"
+cask "iterm2"
+cask "sequel-ace"
+cask "sublime-text"
+cask "visual-studio-code"
+cask "fork"
+cask "notion"
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Xcode", id: 497799835

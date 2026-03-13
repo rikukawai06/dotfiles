@@ -1,14 +1,5 @@
 #!/bin/zsh
 
-# OS確認
-if [[ "$(uname)" == "Darwin" ]]; then
-  # Mac用の処理（Homebrewのインストールなど）
-  OS="mac"
-elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
-  # WSL2/Linux用の処理
-  OS="linux"
-fi
-
 # clone repository
 if [[ ! -e ${HOME}/.dotfiles ]]; then
   git clone https://github.com/rikukawai06/dotfiles.git ${HOME}/.dotfiles
@@ -47,7 +38,7 @@ fi
 source ${HOME}/.zshrc
 
 # windowsに必要なツールをインストール
-if [[ "$(uname -r)" == *microsoft* ]] || [[ "$(uname -r)" == *WSL* ]]; then
+if [[ "$OS_ENV" == "windows" ]]; then
   echo "WSL環境を検知しました。Windows側にGUIアプリをインストールします..."
   winget.exe install --id Microsoft.VisualStudioCode -e --accept-package-agreements --accept-source-agreements
   winget.exe install --id Fork.Fork -e
@@ -56,7 +47,7 @@ if [[ "$(uname -r)" == *microsoft* ]] || [[ "$(uname -r)" == *WSL* ]]; then
 fi
 
 # Install brew packages
-if [[ "$CI" != "true" ]]; then
+if [[ "$CI" != "true" ]] || [[ "$OS_ENV" == "mac" ]]; then
   echo "Homebrewパッケージをインストールします..."
   brew bundle --file="${HOME}/.dotfiles/setup/Brewfile"
 else
