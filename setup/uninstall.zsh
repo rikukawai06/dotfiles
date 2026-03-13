@@ -1,14 +1,8 @@
 #!/bin/zsh
 
-echo "=== dotfilesのアンインストールを開始します ==="
+source ~/.dotfiles/config/os_env.zsh
 
-if [[ "$(uname)" == "Darwin" ]]; then
-  # Mac用の処理（Homebrewのインストールなど）
-  export OS_ENV = "mac"
-elif [[ "$(uname -r)" == *microsoft* ]] || [[ "$(uname -r)" == *WSL* ]]; then
-  # windows用の処理
-  export OS_ENV = "windows"
-fi
+echo "=== dotfilesのアンインストールを開始します ==="
 
 # Windows側のツールをアンインストール (WSL環境のみ)
 if [[ "$OS_ENV" == "windows" ]]; then

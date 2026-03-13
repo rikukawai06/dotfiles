@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source ~/.dotfiles/config/os_env.zsh
+
 # clone repository
 if [[ ! -e ${HOME}/.dotfiles ]]; then
   git clone https://github.com/rikukawai06/dotfiles.git ${HOME}/.dotfiles
@@ -47,7 +49,7 @@ if [[ "$OS_ENV" == "windows" ]]; then
 fi
 
 # Install brew packages
-if [[ "$OS_ENV" == "mac" ]]; then
+if [[ "$OS" == "mac" ]]; then
   echo "Homebrewパッケージをインストールします..."
   brew bundle --file="${HOME}/.dotfiles/setup/Brewfile"
 else
